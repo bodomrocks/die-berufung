@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Die Berufung</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #fefefe;
+      color: #111;
+      margin: 0;
+      padding: 1em;
+    }
+    #game-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 1em;
+      text-align: center;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1em;
+      border: 1px solid #333;
+    }
+    .choice {
+      display: block;
+      margin: 0.5em auto;
+      padding: 0.75em 1em;
+      background: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .choice:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <img id="image" src="" alt="" />
+    <div id="text"></div>
+    <div id="choices"></div>
+  </div>
+  <script>
+    const passages = 
+{
+  "Spielbeginn": {
+    "text": "Es ist soweit. Heute werden die besten Kandidaten für die Dozierendenstelle für Medienkulturen der Gegenwart interviewt. Das wird ein langer Tag.",
+    "img": "splashscreen.png",
+    "choices": [
+      {
+        "text": "1: Los geht's!",
+        "next": "Intro 1"
+      }
+    ]
+  },
+  "Intro 1": {
+    "text": "Die Kommission tagt im Sitzungssaal der Philosophisch-historischen Fakultät. Auf dem Tisch: ein hoher Stapel exzellenter Bewerbungen. Doch zuoberst ein QR-Code. Was ist das denn?",
+    "img": "01_kommission.png",
+    "choices": [
+      {
+        "text": "1: Scanne den Code.",
+        "next": "Erscheinung 1"
+      },
+      {
+        "text": "2: Gehe zum nächsten Kandidaten",
+        "next": "Intro 2"
+      }
+    ]
+  },
+  "Intro 2": {
+    "text": "Du greifst nach dem nächsten Dossier, doch da ertönt es aus dem Kreis der Kolleg*innen: \"Warte, ich bin neugierig. Scanne den Code. Was soll schon passieren?\"",
+    "img": "01_kommission.png",
+    "choices": [
+      {
+        "text": "1: Scanne den Code.",
+        "next": "Erscheinung 1"
+      }
+    ]
+  },
+  "Erscheinung 1": {
+    "text": "Kaum ist der Code gescannt, manifestiert sich eine eindrückliche Figur. Fast zwei Meter gross, von gewinnendem Charme und natürlicher Schönheit. \n\n\"Grüessech, sehr geehrte Kommission. Dr. Bojan Peric ist der Name.\" \n\nEin Raunen geht durch den Raum.\n\nNachdem der erste Schock abgeklungen ist, folgt die erste zögerliche Frage:",
+    "img": "02_auftritt.png",
+    "choices": [
+      {
+        "text": "1: Frage ihn nach seiner Forschung.",
+        "next": "Erscheinung 2"
+      },
+      {
+        "text": "2: Frage ihn nach seiner Lehre",
+        "next": "Erscheinung 3"
+      },
+      {
+        "text": "3: Frage ihn nach digitalen Medien",
+        "next": "Erscheinung 4"
+      }
+    ]
+  },
+  "Erscheinung 2": {
+    "text": "\"Wozu forschen Sie?\"\n\n\"Meine Dissertation behandelt digital-interaktive Narrative und ihre Verfremdungseffekte. Ich frage: Wie erzählen digital-interaktive Werke? Und hat das künstlerische Qualität?\"",
+    "img": "02_auftritt.png",
+    "choices": [
+      {
+        "text": "1: Frage ihn nach seiner Lehre",
+        "next": "Erscheinung 3"
+      },
+      {
+        "text": "2: Frage ihn nach digitalen Medien",
+        "next": "Erscheinung 4"
+      },
+      {
+        "text": "3: Fordere den Kandidaten heraus",
+        "next": "Zweifel 1"
+      }
+    ]
+  },
+  "Erscheinung 3": {
+    "text": "\"Wie sieht es mit Ihrer Lehre aus?\", fragst du.\n\n\"Zu diesem Thema zitiere ich gerne Luhmann - wenn auch sehr frei. Projekt: Verklugung der Gesellschaft. Dauer: 20 Jahre. Kosten: keine.\"\n\nEs traut sich niemand, anzumerken, dass \"Verklugung\" kein Wort ist. Vielleicht ist es auch gerade eins geworden. Auch das mit den Kosten wirkt eigentümlich, aber alle Zweifel können nicht gegen seine Aura ankommen.",
+    "img": "02_auftritt.png",
+    "choices": [
+      {
+        "text": "1: Frage ihn nach seiner Forschung",
+        "next": "Erscheinung 2"
+      },
+      {
+        "text": "2: Frage ihn nach digitalen Medien",
+        "next": "Erscheinung 4"
+      },
+      {
+        "text": "3: Fordere den Kandidaten heraus",
+        "next": "Zweifel 1"
+      }
+    ]
+  },
+  "Erscheinung 4": {
+    "text": "\"Nun sagt, wie haltet Ihr's mit den digitalen Medien?\", fragt jemand, vermutlich Gretchen.\n\n\"Ich baue digitale Textkorpora, analysiere Diskurse computergestützt und beginne im Herbst einen CAS in Natural Language Processing – an Ihrer Uni. Und ja – ich habe mich sogar zum Grafikdesigner ausbilden lassen, um visuelle Ausdrucksformen auch praktisch zu verstehen.\"",
+    "img": "02_auftritt.png",
+    "choices": [
+      {
+        "text": "1: Frage ihn nach seiner Forschung",
+        "next": "Erscheinung 2"
+      },
+      {
+        "text": "2: Frage ihn nach seiner Lehre",
+        "next": "Erscheinung 3"
+      },
+      {
+        "text": "3: Fordere den Kandidaten heraus",
+        "next": "Zweifel 1"
+      }
+    ]
+  },
+  "Zweifel 1": {
+    "text": "Ein Mitglied der Kommission murmelt: \"Schlagfertig sind Sie ja. Aber können Sie Spiel und Ernst unterscheiden? Und können Sie vernünftig dozieren?\"",
+    "img": "02_auftritt.png",
+    "choices": [
+      {
+        "text": "1: Lassen wir ihn sprechen.",
+        "next": "Zweifel 2"
+      },
+      {
+        "text": "2: Testen wir seine Standhaftigkeit.",
+        "next": "Zweifel 3"
+      }
+    ]
+  },
+  "Zweifel 2": {
+    "text": "\"Ich kann ernsthaft über Spiel sprechen – und spielerisch über Ernst. Letzteres tue ich gerade. Aber Sie wollen eine Vorlesung? Nichts lieber als das.\"",
+    "img": "02_auftritt.png",
+    "choices": [
+      {
+        "text": "Weiter",
+        "next": "Zweifel 3"
+      }
+    ]
+  },
+  "Zweifel 3": {
+    "text": "Scheinbar aus dem Nichts flimmert plötzlich eine 96-seitige Powerpoint-Präsentation auf der Leinwand. Aufschreibesysteme! Es folgt eine Tour de Force zwischen Kittlers \"Grammophon, Film, Typewriter\" und Vismanns Interpretationen juristischer Literatur. 96 Folien später scheint es, als sei keine Minute vergangen. \"Endlich verstehe ich Aufschreibesysteme\", flüstert jemand.",
+    "img": "03_zweifel.png",
+    "choices": [
+      {
+        "text": "1: Lass die Situation eskalieren",
+        "next": "Hydra 1"
+      }
+    ]
+  },
+  "Hydra 1": {
+    "text": "Du drückst einen geheimen Knopf auf der Unterseite des Tischs. Langgezogene Flötentöne erklingen. Das Raum-Zeit-Kontinuum verabschiedet sich. Der Saal, das Institut und die ganze Universität verschwimmen zur - akademischen Hydra!\n\n\" dAS iST dEINE lETZTE hERAUSFORDERUNG\", faucht die Hydra in einer Sprache, die niemand und doch jeder versteht.",
+    "img": "04_hydra.png",
+    "choices": [
+      {
+        "text": "1: Frage nach dem CV",
+        "next": "Hydra 2"
+      },
+      {
+        "text": "2: Frage nach seiner Zukunftsvision",
+        "next": "Hydra 3"
+      },
+      {
+        "text": "3: Frage nach der Gehaltsvorstellung",
+        "next": "Hydra 4"
+      }
+    ]
+  },
+  "Hydra 2": {
+    "text": "Der Kandidat antwortet telepathisch.\n\n\"Ja, in meinem Alter sind einige schon Professor*in. Aber begradigte Flüsse sind künstlich. Die echten mäandrieren.\"\n\nDie Hydra faucht.",
+    "img": "04_hydra.png",
+    "choices": [
+      {
+        "text": "1: Frage nach seiner Zukunftsvision",
+        "next": "Hydra 3"
+      },
+      {
+        "text": "2: Frage nach der Gehaltsvorstellung",
+        "next": "Hydra 4"
+      },
+      {
+        "text": "3: Pfeif die Hydra zurück",
+        "next": "Entscheidung"
+      }
+    ]
+  },
+  "Hydra 3": {
+    "text": "Der Kandidat antwortet telepathisch.\n\n\"Die Zukunft ist chiastisch. Digitale Medien werden mit traditionellen Methoden erforscht, und traditionelle Texte mit digitalen Methoden. Ich möchte ein Teil dieser Zukunft sein.\"\n\nDie Hydra grunzt.",
+    "img": "04_hydra.png",
+    "choices": [
+      {
+        "text": "1: Frage nach dem CV",
+        "next": "Hydra 2"
+      },
+      {
+        "text": "2: Frage nach der Gehaltsvorstellung",
+        "next": "Hydra 4"
+      },
+      {
+        "text": "3: Pfeif die Hydra zurück",
+        "next": "Entscheidung"
+      }
+    ]
+  },
+  "Hydra 4": {
+    "text": "Der Kandidat antwortet telepathisch.\n\n\"Die Kunst geht nach Brot, steht schon in Emilia Galotti. Aber über Geld zu sprechen, behagt mir nicht. Ich bin jeden Lohn wert.\"\n\nDie Hydra knurrt.",
+    "img": "04_hydra.png",
+    "choices": [
+      {
+        "text": "1: Frage nach dem CV",
+        "next": "Hydra 2"
+      },
+      {
+        "text": "2: Frage nach seiner Zukunftsvision",
+        "next": "Hydra 3"
+      },
+      {
+        "text": "3: Pfeif die Hydra zurück",
+        "next": "Entscheidung"
+      }
+    ]
+  },
+  "Entscheidung": {
+    "text": "Die Welt kehrt langsam zu ihrer eigentlichen Form zurück, nicht ohne ein leichtes Schwindelgefühl zu hinterlassen.\n\nDie Entscheidung muss nicht getroffen werden, sie drängt sich auf. Die Kommissionsmitglieder sehen einander schweigend an, im Wissen, dass sie das einzig Richtige tun.",
+    "img": "05_berufung.png",
+    "choices": [
+      {
+        "text": "1: Berufen.",
+        "next": "Ende"
+      }
+    ]
+  },
+  "Ende": {
+    "text": "Sie haben mit algorithmischer Intuition, epistemischer Neugier und einem Lächeln  die richtige Entscheidung getroffen.\n\nDanke fürs Mitspielen.",
+    "img": "splashscreen.png",
+    "choices": []
+  }
+};
+
+    function render(key) {
+      const p = passages[key];
+      document.getElementById("text").innerText = p.text;
+      document.getElementById("image").src = p.img;
+      const cDiv = document.getElementById("choices");
+      cDiv.innerHTML = "";
+      p.choices.forEach(ch => {
+        const btn = document.createElement("button");
+        btn.className = "choice";
+        btn.innerText = ch.text;
+        btn.onclick = () => render(ch.next);
+        cDiv.appendChild(btn);
+      });
+    }
+
+    render("Spielbeginn");
+  </script>
+</body>
+</html>
