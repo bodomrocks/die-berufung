@@ -27,8 +27,10 @@
     }
     .choice {
       display: block;
-      margin: 0.5em auto;
-      padding: 0.75em 1em;
+      width: 100%;
+      max-width: 100%;
+      margin: 1em auto;
+      padding: 0.75em 2em;
       background: #000;
       color: #fff;
       border: none;
@@ -43,14 +45,14 @@
 <body>
   <div id="game-container">
     <img id="image" src="" alt="" />
-    <div id="text"></div>
+    <div id="text" style="padding-bottom: 1em"></div>
     <div id="choices"></div>
   </div>
   <script>
     const passages = 
 {
   "Spielbeginn": {
-    "text": "Es ist soweit. Heute werden die besten Kandidaten für die Dozierendenstelle für Medienkulturen der Gegenwart interviewt. Das wird ein langer Tag.",
+    "text": "Es ist soweit. Heute werden die besten Kandidaten für die Dozierendenstelle für Medienkulturen der Gegenwart interviewt. Das wird ein langer Tag.\n",
     "img": "splashscreen.jpg",
     "choices": [
       {
@@ -60,11 +62,11 @@
     ]
   },
   "Intro 1": {
-    "text": "Die Kommission tagt im Sitzungssaal der Philosophisch-historischen Fakultät. Auf dem Tisch: ein hoher Stapel exzellenter Bewerbungen. Doch zuoberst ein QR-Code. Was ist das denn?",
+    "text": "Die Kommission tagt im Sitzungssaal der Philosophisch-historischen Fakultät. Auf dem Tisch: ein hoher Stapel exzellenter Bewerbungen. Doch zuoberst ein QR-Code. Was ist das denn?\n",
     "img": "01_kommission.jpg",
     "choices": [
       {
-        "text": "1: Scanne den Code.",
+        "text": "1: Scanne den Code",
         "next": "Erscheinung 1"
       },
       {
@@ -74,17 +76,17 @@
     ]
   },
   "Intro 2": {
-    "text": "Du greifst nach dem nächsten Dossier, doch da ertönt es aus dem Kreis der Kolleg*innen: \"Warte, ich bin neugierig. Scanne den Code. Was soll schon passieren?\"",
+    "text": "Du greifst nach dem nächsten Dossier, doch da ertönt es aus dem Kreis der Kolleg*innen: \"Warte, ich bin neugierig. Scanne den Code. Was soll schon passieren?\"\n",
     "img": "01_kommission.jpg",
     "choices": [
       {
-        "text": "1: Scanne den Code.",
+        "text": "1: Scanne den Code",
         "next": "Erscheinung 1"
       }
     ]
   },
   "Erscheinung 1": {
-    "text": "Kaum ist der Code gescannt, manifestiert sich eine eindrückliche Figur. Fast zwei Meter gross, von gewinnendem Charme und natürlicher Schönheit. \n\n\"Grüessech, sehr geehrte Kommission. Dr. Bojan Peric ist der Name.\" \n\nEin Raunen geht durch den Raum.\n\nNachdem der erste Schock abgeklungen ist, folgt die erste zögerliche Frage:",
+    "text": "Kaum ist der Code gescannt, manifestiert sich eine eindrückliche Figur. Fast zwei Meter gross, von gewinnendem Charme und natürlicher Schönheit. \n\n\"Grüessech, sehr geehrte Kommission. Dr. Bojan Peric ist der Name.\" \n\nEin Raunen geht durch den Raum.\n\nNachdem der erste Schock abgeklungen ist, folgt die erste zögerliche Frage:\n",
     "img": "02_auftritt.jpg",
     "choices": [
       {
@@ -102,7 +104,7 @@
     ]
   },
   "Erscheinung 2": {
-    "text": "\"Wozu forschen Sie?\"\n\n\"Meine Dissertation behandelt digital-interaktive Narrative und ihre Verfremdungseffekte. Ich frage: Wie erzählen digital-interaktive Werke? Und hat das künstlerische Qualität?\"",
+    "text": "\"Wozu forschen Sie?\"\n\n\"Meine Dissertation behandelt digital-interaktive Narrative und ihre Verfremdungseffekte. Ich frage: Wie erzählen digital-interaktive Werke? Und hat das künstlerische Qualität?\"\n",
     "img": "02_auftritt.jpg",
     "choices": [
       {
@@ -138,7 +140,7 @@
     ]
   },
   "Erscheinung 4": {
-    "text": "\"Nun sagt, wie haltet Ihr's mit den digitalen Medien?\", fragt jemand, vermutlich Gretchen.\n\n\"Ich baue digitale Textkorpora, analysiere Diskurse computergestützt und beginne im Herbst einen CAS in Natural Language Processing – an Ihrer Uni. Und ja – ich habe mich sogar zum Grafikdesigner ausbilden lassen, um visuelle Ausdrucksformen auch praktisch zu verstehen.\"",
+    "text": "\"Nun sagt, wie habt Ihr's mit den digitalen Medien?\", fragt jemand, vermutlich Margarete.\n\n\"Ich baue digitale Textkorpora, analysiere Diskurse computergestützt und beginne im Herbst einen CAS in Natural Language Processing – an Ihrer Uni. Und ja – ich habe mich sogar zum Grafikdesigner ausbilden lassen, um visuelle Ausdrucksformen auch praktisch zu verstehen.\"",
     "img": "02_auftritt.jpg",
     "choices": [
       {
